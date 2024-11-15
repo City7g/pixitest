@@ -39,6 +39,8 @@ displacementSprite.height = app.view.height
 const Filter = new PIXI.Filter(null, fragmentShader)
 
 Filter.uniforms.uMixFactor = 1
+Filter.uniforms.uMixFactor1 = 1
+Filter.uniforms.uMixFactor2 = 1.1
 Filter.uniforms.uProgress = 0
 Filter.uniforms.uTextureOne = sprite1.texture
 Filter.uniforms.uTextureTwo = sprite2.texture
@@ -72,14 +74,15 @@ container2.mask = mask
 app.stage.addChild(container1)
 app.stage.addChild(container2)
 
-const duration = 0.4
+const duration = 1
 
 const tl = gsap.timeline({
   repeat: -1,
   repeatDelay: 2,
+  delay: 0.2,
   // yoyo: true,
-  duration: 2,
-  ease: 'power2.outIn',
+  duration: 4,
+  ease: 'none',
 })
 
 tl.fromTo(
@@ -89,6 +92,7 @@ tl.fromTo(
   },
   {
     uProgress: 1,
+    ease: 'power4.inOut',
     duration: duration * 2,
     onComplete: () => {
       setTimeout(() => {
@@ -112,25 +116,82 @@ tl.fromTo(
   .fromTo(
     Filter.uniforms,
     {
-      uMixFactor: 1,
+      uMixFactor1: 1,
     },
     {
-      uMixFactor: 1.4,
-      duration: duration,
+      uMixFactor1: 1.1,
+      ease: 'power1.in',
+      duration: duration * 0.6,
+      onComplete: () => {
+        // setTimeout(() => {
+        //   Filter.uniforms.uMixFactor1 = 1
+        // }, 800)
+      },
     },
     0
   )
   .fromTo(
     Filter.uniforms,
     {
-      uMixFactor: 1.4,
+      uMixFactor1: 1.1,
     },
     {
-      uMixFactor: 1,
-      duration: duration,
+      uMixFactor1: 1,
+      ease: 'power1.in',
+      duration: duration * 0.6,
+      onComplete: () => {
+        setTimeout(() => {
+          Filter.uniforms.uMixFactor1 = 1
+        }, 800)
+      },
     },
-    duration
+    duration * 0.8
   )
+  .fromTo(
+    Filter.uniforms,
+    {
+      uMixFactor2: 1,
+    },
+    {
+      uMixFactor2: 1.1,
+      ease: 'power1.out',
+      duration: duration * 0.6,
+      onComplete: () => {
+        // setTimeout(() => {
+        //   Filter.uniforms.uMixFactor2 = 1.1
+        // }, 800)
+      },
+    },
+    duration * 0.4
+  )
+  .fromTo(
+    Filter.uniforms,
+    {
+      uMixFactor2: 1.1,
+    },
+    {
+      uMixFactor2: 1,
+      ease: 'power1.out',
+      duration: duration * 0.6,
+      onComplete: () => {
+        // setTimeout(() => {
+        //   Filter.uniforms.uMixFactor2 = 1.1
+        // }, 800)
+      },
+    },
+    duration * 1.2
+  )
+  // .fromTo(
+  //   Filter.uniforms,
+  //   {
+  //     uMixFactor: 1.1,
+  //   },
+  //   {
+  //     uMixFactor: 1,
+  //     duration: duration,
+  //   },
+  //   duration
+  // )
   .fromTo(
     displacementFilter.scale,
     {
@@ -193,5 +254,5 @@ tl.fromTo(
   )
 
 app.ticker.add(() => {
-  console.log(Filter.uniforms.uProgress, displacementFilter.scale.x)
+  console.log(Filter.uniforms.uMixFactor1, Filter.uniforms.uMixFactor2)
 })
