@@ -40,7 +40,7 @@ const Filter = new PIXI.Filter(null, fragmentShader)
 
 Filter.uniforms.uMixFactor = 1
 Filter.uniforms.uMixFactor1 = 1
-Filter.uniforms.uMixFactor2 = 1.1
+Filter.uniforms.uMixFactor2 = 1.35
 Filter.uniforms.uProgress = 0
 Filter.uniforms.uTextureOne = sprite1.texture
 Filter.uniforms.uTextureTwo = sprite2.texture
@@ -74,7 +74,7 @@ container2.mask = mask
 app.stage.addChild(container1)
 app.stage.addChild(container2)
 
-const duration = 1
+const duration = 0.5
 
 const tl = gsap.timeline({
   repeat: -1,
@@ -91,7 +91,7 @@ tl.fromTo(
     uProgress: 0,
   },
   {
-    uProgress: 1,
+    uProgress: 2,
     ease: 'power4.inOut',
     duration: duration * 2,
     onComplete: () => {
@@ -119,9 +119,9 @@ tl.fromTo(
       uMixFactor1: 1,
     },
     {
-      uMixFactor1: 1.1,
+      uMixFactor1: 1.35,
       ease: 'power1.in',
-      duration: duration * 0.6,
+      duration: duration * 0.9,
       onComplete: () => {
         // setTimeout(() => {
         //   Filter.uniforms.uMixFactor1 = 1
@@ -133,19 +133,19 @@ tl.fromTo(
   .fromTo(
     Filter.uniforms,
     {
-      uMixFactor1: 1.1,
+      uMixFactor1: 1.35,
     },
     {
       uMixFactor1: 1,
       ease: 'power1.in',
-      duration: duration * 0.6,
+      duration: duration * 0.9,
       onComplete: () => {
         setTimeout(() => {
           Filter.uniforms.uMixFactor1 = 1
         }, 800)
       },
     },
-    duration * 0.8
+    duration * 0.9
   )
   .fromTo(
     Filter.uniforms,
@@ -153,12 +153,12 @@ tl.fromTo(
       uMixFactor2: 1,
     },
     {
-      uMixFactor2: 1.1,
+      uMixFactor2: 1.35,
       ease: 'power1.out',
-      duration: duration * 0.6,
+      duration: duration * 0.9,
       onComplete: () => {
         // setTimeout(() => {
-        //   Filter.uniforms.uMixFactor2 = 1.1
+        //   Filter.uniforms.uMixFactor2 = 1.35
         // }, 800)
       },
     },
@@ -167,24 +167,24 @@ tl.fromTo(
   .fromTo(
     Filter.uniforms,
     {
-      uMixFactor2: 1.1,
+      uMixFactor2: 1.35,
     },
     {
       uMixFactor2: 1,
       ease: 'power1.out',
-      duration: duration * 0.6,
+      duration: duration * 0.9,
       onComplete: () => {
         // setTimeout(() => {
-        //   Filter.uniforms.uMixFactor2 = 1.1
+        //   Filter.uniforms.uMixFactor2 = 1.35
         // }, 800)
       },
     },
-    duration * 1.2
+    duration * 1.1
   )
   // .fromTo(
   //   Filter.uniforms,
   //   {
-  //     uMixFactor: 1.1,
+  //     uMixFactor: 1.35,
   //   },
   //   {
   //     uMixFactor: 1,
