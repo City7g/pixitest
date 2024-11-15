@@ -1,4 +1,4 @@
-import * as PIXI from 'pixi.js'
+import * as PIXI from './node_modules/pixi.js/lib/index'
 import '@pixi/filter-displacement'
 import fragmentShader from './anim1.glsl?raw'
 import gsap from 'gsap'
