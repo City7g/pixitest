@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js'
+import '@pixi/filter-displacement'
 import fragmentShader from './anim1.glsl?raw'
 import gsap from 'gsap'
 
