@@ -1,7 +1,7 @@
-import * as PIXI from './node_modules/pixi.js/lib/index'
-import './node_modules/@pixi/filter-displacement/lib/index'
+import * as PIXI from 'pixi.js'
+import '@pixi/filter-displacement'
 import fragmentShader from './anim1.glsl?raw'
-import gsap from './node_modules/gsap/gsap-core'
+import gsap from 'gsap'
 
 const app = new PIXI.Application({
   width: window.innerWidth,
