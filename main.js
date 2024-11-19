@@ -72,9 +72,9 @@ container2.addChild(mask)
 container2.mask = mask
 
 app.stage.addChild(container1)
-app.stage.addChild(container2)
+// app.stage.addChild(container2)
 
-const duration = 0.5
+const duration = 0.9
 
 const tl = gsap.timeline({
   repeat: -1,
@@ -91,8 +91,8 @@ tl.fromTo(
     uProgress: 0,
   },
   {
-    uProgress: 2,
-    ease: 'power4.inOut',
+    uProgress: 1,
+    ease: 'none',
     duration: duration * 2,
     onComplete: () => {
       setTimeout(() => {
