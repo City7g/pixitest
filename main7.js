@@ -39,7 +39,14 @@ container.filters = [Filter]
 gsap.fromTo(
   Filter.uniforms,
   { uProgress: 0 },
-  { uProgress: 1, duration: 1, repeatDelay: 1, delay: 0.5, repeat: -1 }
+  {
+    uProgress: 1,
+    ease: 'power1.out',
+    duration: 1,
+    repeatDelay: 1,
+    delay: 0.5,
+    repeat: -1,
+  }
 )
 
 // app.ticker.add(() => {
