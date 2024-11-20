@@ -3,9 +3,9 @@ import * as PIXI from 'pixi.js'
 import gsap from 'gsap'
 import * as dat from 'dat.gui'
 
-// const gui = new dat.GUI()
+const gui = new dat.GUI()
 
-// gui.add({ progress: 0 }, 'progress', 0, 1, 0.01)
+gui.add({ progress: 0 }, 'progress', 0, 1, 0.01)
 
 import fragment from './main7.glsl?raw'
 
@@ -41,8 +41,8 @@ gsap.fromTo(
   { uProgress: 0 },
   {
     uProgress: 1,
-    ease: 'power1.out',
-    duration: 1,
+    ease: 'power3.out',
+    duration: 3,
     repeatDelay: 1,
     delay: 0.5,
     repeat: -1,
